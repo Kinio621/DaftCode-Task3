@@ -14,7 +14,12 @@ class PatientResp(BaseModel):
 global i
 i = 0
 
+def increment():
+    global i
+    i = i + 1
+    
 @app.post('/patient', response_model=PatientResp)
 def post_patient(p: Patient):
-    i=i+1
+    global i
+    increment()
     return PatientResp(id=i, patient = p)
